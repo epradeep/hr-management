@@ -1,10 +1,15 @@
-// import axios from "axios";
+import axios from "axios";
+
+export default axios.create({
+  // baseURL: "http://localhost:3000/",
+  baseURL: "https://my-json-server.typicode.com/epradeep/hr-management",
+});
 
 // export const API_URL = "http://localhost:3000/employees";
 
 //for deployemet
-export const API_URL =
-  "https://my-json-server.typicode.com/epradeep/hr-management/employees";
+// export const API_URL =
+//   "https://my-json-server.typicode.com/epradeep/hr-management/employees";
 
 // export const getEmployees = () => axios.get(API_URL);
 // export const getEmployeeById = (id) => axios.get(`${API_URL}/${id}`);

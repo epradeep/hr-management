@@ -22,6 +22,7 @@
   -Created addEmployee, updateEmployee, deleteEmployee actions by extraReducers
 
 -Employee Search Bar
+-Employee List with Pagination
 
 # Features
 
@@ -31,4 +32,5 @@
 -React Router
 -Redux Toolkit for state management
 -Employee Search Bar
-"# hr-management" 
+-Employee List with Pagination
+"# hr-management"

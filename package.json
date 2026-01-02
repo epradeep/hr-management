@@ -15,6 +15,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "axios": "^1.13.2",
     "formik": "^2.4.9",
+    "json-server": "^0.17.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
