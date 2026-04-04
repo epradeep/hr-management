@@ -64,7 +64,7 @@ export const fetchEmployees = createAsyncThunk(
           (emp) =>
             emp.name.toLowerCase().includes(search.toLowerCase()) ||
             emp.email.toLowerCase().includes(search.toLowerCase()) ||
-            emp.department.toLowerCase().includes(search.toLowerCase())
+            emp.department.toLowerCase().includes(search.toLowerCase()),
         );
       }
       return {
@@ -76,7 +76,7 @@ export const fetchEmployees = createAsyncThunk(
       // Return a rejected promise with the error message
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const addEmployee = createAsyncThunk(
@@ -88,7 +88,7 @@ export const addEmployee = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const updateEmployee = createAsyncThunk(
@@ -101,7 +101,7 @@ export const updateEmployee = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const deleteEmployee = createAsyncThunk(
@@ -113,7 +113,7 @@ export const deleteEmployee = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 const initialState = {
@@ -160,7 +160,7 @@ const employeeSlice = createSlice({
       })
       .addCase(updateEmployee.fulfilled, (state, action) => {
         const index = state.list.findIndex(
-          (emp) => emp.id === action.payload.id
+          (emp) => emp.id === action.payload.id,
         );
         if (index !== -1) {
           state.list[index] = action.payload;

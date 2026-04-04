@@ -24,6 +24,11 @@
 -Employee Search Bar
 -Employee List with Pagination
 
+-Login Form
+-Sign Up Form
+-Form validation
+-What is useRef hook
+
 # Features
 
 -Created React App with Vite

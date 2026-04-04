@@ -18,7 +18,7 @@ function EmployeeForm({ onSubmitBtn, initialData }) {
         enableReinitialize
         onSubmit={(values, { resetForm }) => {
           console.log(values);
-          onSubmitBtn({ ...values, id: Date.now().toString() }), resetForm();
+          (onSubmitBtn({ ...values, id: Date.now().toString() }), resetForm());
         }}
       >
         {() => {

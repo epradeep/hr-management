@@ -1,8 +1,22 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "email": "hr@company.com",
+      "password": "1234",
+      "role": "HR"
+    },
+    {
+      "id": 2,
+      "email": "emp@company.com",
+      "password": "1234",
+      "role": "EMPLOYEE"
+    }
+  ],
   "employees": [
     {
       "id": "1766504123883",
-      "name": "test",
+      "name": "test1",
       "email": "test@gmail.com",
       "department": "HR"
     },
@@ -14,7 +28,7 @@
     },
     {
       "id": "1766988249503",
-      "name": "Raj",
+      "name": "raju",
       "email": "raj@gmail.com",
       "department": "IT"
     },

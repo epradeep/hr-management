@@ -24,7 +24,7 @@ function EmployeeForm({ onSubmitBtn, selectedEmployee }) {
             resetForm();
         }}
       >
-        {() => {
+        {({ isValid, dirty }) => {
           return (
             <Form className="flex flex-wrap -mx-3 px-3 mt-5">
               <div className="w-full md:w-1/3 mb-6 md:mb-0">
@@ -90,8 +90,8 @@ function EmployeeForm({ onSubmitBtn, selectedEmployee }) {
                 />
               </div>
               <button
-                type="submit"
                 className="bg-green-500 hover:bg-green-700 text-white rounded py-2 px-4 mt-4"
+                disabled={!isValid || !dirty}
               >
                 {selectedEmployee ? "Update" : "Add"}
               </button>
