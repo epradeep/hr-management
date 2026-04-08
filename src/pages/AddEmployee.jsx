@@ -10,7 +10,7 @@ function AddEmployee() {
   const handleSubmit = (employee) => {
     try {
       dispatch(addEmployee(employee));
-      navigate("/");
+      navigate("/employees");
     } catch (error) {
       console.error(error);
     }

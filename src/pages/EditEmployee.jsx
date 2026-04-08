@@ -8,13 +8,13 @@ function EditEmployee() {
   const { id } = useParams();
   const navigate = useNavigate();
   const selectedEmployee = useSelector((state) =>
-    state.employees.list.find((emp) => emp.id === id)
+    state.employees.list.find((emp) => emp.id === id),
   );
   // console.log(selectedEmployee);
 
   const handleSubmit = (data) => {
     try {
-      dispatch(updateEmployee(data)).then(() => navigate("/"));
+      dispatch(updateEmployee(data)).then(() => navigate("/employees"));
     } catch (error) {
       console.error(error);
     }

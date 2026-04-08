@@ -17,12 +17,13 @@ function EmployeeeList() {
     error,
     page,
     totalPages,
+    search,
   } = useSelector((state) => state.employees);
   // console.log(page, totalPages);
 
   useEffect(() => {
     dispatch(fetchEmployees());
-  }, [dispatch, page]);
+  }, [dispatch, page, search]);
 
   const handleDelete = (id) => {
     dispatch(deleteEmployee(id));
@@ -42,7 +43,7 @@ function EmployeeeList() {
 
   return (
     <>
-      <h2 className="text-left text-2xl">Employeee List</h2>
+      <h2 className="text-left font-bold text-xl">Employeee List</h2>
       <div className="flex justify-between my-4">
         <SearchEmployee />
         <Link to={"/add"} className="btn btn-success ">
@@ -54,7 +55,7 @@ function EmployeeeList() {
         <table className="table">
           <thead>
             <tr>
-              <th>S.No</th>
+              <th>Employee Id</th>
               <th>Name</th>
               <th>Email</th>
               <th>Department</th>
@@ -62,9 +63,9 @@ function EmployeeeList() {
             </tr>
           </thead>
           <tbody>
-            {employeesList?.map((emp, i) => (
+            {employeesList?.map((emp) => (
               <tr key={emp.id}>
-                <td>{i + 1}</td>
+                <td>{emp.id}</td>
                 <td>{emp.name}</td>
                 <td>{emp.email}</td>
                 <td>{emp.department}</td>

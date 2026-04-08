@@ -1,34 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 import api from "../api/axios";
 
-//Async Thunks
-// export const fetchEmployees = createAsyncThunk(
-//   "employees/fetchEmployees",
-//   async (searchTerm, { rejectWithValue }) => {
-//     // console.log(searchTerm);
-//     try {
-//       // const url = search ? `${API_URL}?name=${search}` : API_URL;
-//       const response = await axios.get(API_URL);
-//       const data = response.data;
-
-//       if (!searchTerm) return data;
-
-//       const filteredEmployees = data.filter(
-//         (emp) =>
-//           emp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-//           emp.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-//           emp.department.toLowerCase().includes(searchTerm.toLowerCase())
-//       );
-//       return filteredEmployees;
-//     } catch (error) {
-//       // Return a rejected promise with the error message
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-//with pagination
+//Async Thunks & pagination
 export const fetchEmployees = createAsyncThunk(
   "employees/fetchEmployees",
   async (_, { getState, rejectWithValue }) => {
@@ -46,29 +19,20 @@ export const fetchEmployees = createAsyncThunk(
       const totalItems = Number(response.headers["x-total-count"]);
       // console.log("Headers:", response.headers);
       const totalPages = Math.ceil(totalItems / limit);
-      const data = response.data;
 
-      // if (!search) return data;
+      // console.log("After filter:", response.data);
 
-      // const filteredEmployees = data.filter(
-      //   (emp) =>
-      //     emp.name.toLowerCase().includes(search.toLowerCase()) ||
-      //     emp.email.toLowerCase().includes(search.toLowerCase()) ||
-      //     emp.department.toLowerCase().includes(search.toLowerCase())
-      // );
-      // return filteredEmployees;
-      let employees = data;
+      // if (search) {
+      //   employees = data.filter(
+      //     (emp) =>
+      //       emp.name.toLowerCase().includes(search.toLowerCase()) ||
+      //       emp.email.toLowerCase().includes(search.toLowerCase()) ||
+      //       emp.department.toLowerCase().includes(search.toLowerCase()),
+      //   );
+      // }
 
-      if (search) {
-        employees = data.filter(
-          (emp) =>
-            emp.name.toLowerCase().includes(search.toLowerCase()) ||
-            emp.email.toLowerCase().includes(search.toLowerCase()) ||
-            emp.department.toLowerCase().includes(search.toLowerCase()),
-        );
-      }
       return {
-        employees,
+        employees: response.data,
         totalItems,
         totalPages,
       };

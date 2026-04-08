@@ -20,7 +20,7 @@ function SearchEmployee() {
     // if (!searchTerm.trim()) return;
     if (!isValidSearch(search)) {
       setError(
-        "Enter at least 2 characters. Only letters, numbers, spaces, '@' and '.' are allowed."
+        "Enter at least 2 characters. Only letters, numbers, spaces, '@' and '.' are allowed.",
       );
       return;
     }
