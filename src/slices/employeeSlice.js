@@ -103,6 +103,10 @@ const employeeSlice = createSlice({
       state.search = action.payload;
       state.page = 1; // reset page on search
     },
+    resetEmployees(state) {
+      state.search = "";
+      state.page = 1;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -136,5 +140,5 @@ const employeeSlice = createSlice({
   },
 });
 
-export const { setPage, setSearch } = employeeSlice.actions;
+export const { setPage, setSearch, resetEmployees } = employeeSlice.actions;
 export default employeeSlice.reducer;
