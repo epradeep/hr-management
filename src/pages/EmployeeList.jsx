@@ -37,10 +37,6 @@ function EmployeeeList() {
     return <div>Error: {error}</div>;
   }
 
-  if (status === "succeeded" && employeesList.length === 0) {
-    return <div>No data found.</div>;
-  }
-
   return (
     <>
       <h2 className="text-left font-bold text-xl">Employeee List</h2>
@@ -51,46 +47,52 @@ function EmployeeeList() {
         </Link>
       </div>
 
-      <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 my-4">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Employee Id</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Department</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {employeesList?.map((emp) => (
-              <tr key={emp.id}>
-                <td>{emp.id}</td>
-                <td>{emp.name}</td>
-                <td>{emp.email}</td>
-                <td>{emp.department}</td>
-                <td className="flex flex-wrap">
-                  <Link className="btn btn-success" to={`/edit/${emp.id}`}>
-                    Edit
-                  </Link>
-                  <button
-                    type="button"
-                    className="btn btn-error"
-                    onClick={() => handleDelete(emp.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <Pagination
-        currentPage={page}
-        totalPages={totalPages}
-        onPageChange={(p) => dispatch(setPage(p))}
-      />
+      {status === "succeeded" && employeesList.length === 0 ? (
+        <div className="text-center text-red-500 my-5 py-5">No data found.</div>
+      ) : (
+        <>
+          <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 my-4">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Employee Id</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Department</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {employeesList?.map((emp) => (
+                  <tr key={emp.id}>
+                    <td>{emp.id}</td>
+                    <td>{emp.name}</td>
+                    <td>{emp.email}</td>
+                    <td>{emp.department}</td>
+                    <td className="flex flex-wrap">
+                      <Link className="btn btn-success" to={`/edit/${emp.id}`}>
+                        Edit
+                      </Link>
+                      <button
+                        type="button"
+                        className="btn btn-error"
+                        onClick={() => handleDelete(emp.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={(p) => dispatch(setPage(p))}
+          />
+        </>
+      )}
     </>
   );
 }

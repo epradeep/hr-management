@@ -61,6 +61,7 @@ function SearchEmployee() {
       <div className="flex-auto">
         <input
           type="text"
+          name="search"
           className="input focus:outline-none order-1 focus:bg-white"
           placeholder="Search by name, email, department"
           value={searchTerm}

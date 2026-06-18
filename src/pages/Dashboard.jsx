@@ -1,26 +1,25 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchEmployees } from "../slices/employeeSlice";
+import { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
+import axios from "../api/axios";
 
 function Dashboard() {
-  const dispatch = useDispatch();
-  const { list, totalItems, page, status } = useSelector(
-    (state) => state.employees,
-  );
+  const [totalEmployees, setTotalEmployees] = useState(0);
 
   useEffect(() => {
-    if (status === "idle") {
-      dispatch(fetchEmployees());
-    }
-  }, [dispatch, status]);
+    const getTotalCount = async () => {
+      const response = await axios.get("/employees", {
+        params: {
+          _page: 1,
+          _limit: 1,
+        },
+      });
 
-  const totalEmployees = totalItems;
-  const currentEmployees = list.length;
-  // console.log(list.length);
+      setTotalEmployees(Number(response.headers["x-total-count"]));
+    };
 
-  const departmentCount = [...new Set(list.map((emp) => emp.department))]
-    .length;
+    getTotalCount();
+  }, []);
 
   return (
     <div>
@@ -32,16 +31,16 @@ function Dashboard() {
             <p className="text-xl">{totalEmployees}</p>
           </div>
         </Link>
-        <div className="card bg-base-100 shadow p-4">
+        {/* <div className="card bg-base-100 shadow p-4">
           <h2>Departments</h2>
           <p className="text-xl">{departmentCount}</p>
-        </div>
-        <div className="card bg-base-100 shadow p-4">
+        </div> */}
+        {/* <div className="card bg-base-100 shadow p-4">
           <h2>Current Page</h2>
           <p className="text-xl">
             {currentEmployees} / page {page}
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
